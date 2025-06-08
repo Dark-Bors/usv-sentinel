@@ -12,11 +12,11 @@
 2. [Applicable Documents](#2-applicable-documents)
 3. [Introduction – System Architecture](#3-introduction--system-architecture)
 4. [Glossary](#4-glossary)
-5. [System Requirements](#5-system-requirements)
-   5.1 [Functional Requirements](#51-functional-requirements)
-   5.2 [Non-Functional Requirements](#52-non-functional-requirements)
-   5.3 [Interfaces](#53-interfaces)
-   5.4 [Data Logging & Security](#54-data-logging--security)
+5. [System Requirements](#5-system-requirements)  
+   - 5.1 [Functional Requirements](#51-functional-requirements)  
+   - 5.2 [Non-Functional Requirements](#52-non-functional-requirements)  
+   - 5.3 [Interfaces](#53-interfaces)  
+   - 5.4 [Data Logging & Security](#54-data-logging--security)
 6. [Verification & Traceability](#6-verification--traceability)
 
 ---
