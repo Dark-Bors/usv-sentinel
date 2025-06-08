@@ -1,7 +1,9 @@
 # USV Sentinel – System Requirements Document (SRD)
 
 **Version:** 1.0
+
 **Date:** June 2025
+
 **Prepared by:** Chief Systems Engineer
 
 ---
