@@ -58,49 +58,49 @@ The USV Sentinel system is an embedded AI-powered diagnostics and recovery modul
 
 ### 5.1 Functional Requirements
 
-| **ID** | **Requirement**                                                                                                                | **Rationale**                                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| USV-7  | The system shall acquire voltage, current, temperature, and EMI sensor data at intervals not exceeding 100 milliseconds.       | Enables real-time monitoring of mission-critical systems for early fault detection.        |
-| USV-8  | The system shall preprocess sensor data to remove noise and normalize values before feeding into the AI engine.                | Ensures data accuracy and consistency for reliable AI inference.                           |
-| USV-9  | The system shall evaluate buffered sensor data every 1 second using an onboard AI inference engine.                            | Provides timely diagnosis while balancing computational load on embedded systems.          |
-| USV-10 | The AI engine shall produce a fault likelihood score between 0–100% with a confidence value for each analysis cycle.           | Quantifies system health and allows risk-based decision making.                            |
-| USV-11 | The system shall initiate a mitigation response if the fault likelihood score exceeds a configurable threshold (default: 85%). | Enables autonomous reaction to prevent fault escalation.                                   |
-| USV-12 | The system shall disable or isolate non-critical subsystems if required to preserve operational integrity.                     | Maintains mission continuity by isolating faults and protecting critical operations.       |
-| USV-13 | The system shall continue to log data even during or after a mitigation event.                                                 | Maintains complete fault context for later analysis.                                       |
-| USV-14 | The system shall provide a status flag indicating "Normal," "Warning," or "Mitigation Active" to the USV controller.           | Supports system-level awareness and integration with other onboard decision systems.       |
-| USV-15 | The system shall store all logs locally in a non-volatile memory buffer during missions.                                       | Ensures fault data is preserved for post-mission analysis even after power cycles.         |
-| USV-16 | The system shall package all logs in JSON or CSV format and prepare them for export post-mission.                              | Enables human-readable and machine-parseable logs for downstream analysis and diagnostics. |
+| **ID**                                                        | **Requirement**                                                                                                                |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [USV-7](https://github.com/Dark-Bors/usv-sentinel/issues/2)   | The system shall acquire voltage, current, temperature, and EMI sensor data at intervals not exceeding 100 milliseconds.       |
+| [USV-8](https://github.com/Dark-Bors/usv-sentinel/issues/3)   | The system shall preprocess sensor data to remove noise and normalize values before feeding into the AI engine.                |
+| [USV-9](https://github.com/Dark-Bors/usv-sentinel/issues/4)   | The system shall evaluate buffered sensor data every 1 second using an onboard AI inference engine.                            |
+| [USV-10](https://github.com/Dark-Bors/usv-sentinel/issues/5)  | The AI engine shall produce a fault likelihood score between 0–100% with a confidence value for each analysis cycle.           |
+| [USV-11](https://github.com/Dark-Bors/usv-sentinel/issues/6)  | The system shall initiate a mitigation response if the fault likelihood score exceeds a configurable threshold (default: 85%). |
+| [USV-12](https://github.com/Dark-Bors/usv-sentinel/issues/7)  | The system shall disable or isolate non-critical subsystems if required to preserve operational integrity.                     |
+| [USV-13](https://github.com/Dark-Bors/usv-sentinel/issues/8)  | The system shall continue to log data even during or after a mitigation event.                                                 |
+| [USV-14](https://github.com/Dark-Bors/usv-sentinel/issues/9)  | The system shall provide a status flag indicating "Normal," "Warning," or "Mitigation Active" to the USV controller.           |
+| [USV-15](https://github.com/Dark-Bors/usv-sentinel/issues/10) | The system shall store all logs locally in a non-volatile memory buffer during missions.                                       |
+| [USV-16](https://github.com/Dark-Bors/usv-sentinel/issues/11) | The system shall package all logs in JSON or CSV format and prepare them for export post-mission.                              |
 
 ### 5.2 Non-Functional Requirements
 
-| **ID** | **Requirement**                                                                                             | **Rationale**                                                                                 |
-| ------ | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| USV-17 | The system shall operate in environments from -10°C to +60°C without performance degradation.               | Ensures consistent operation in harsh marine and battlefield conditions.                      |
-| USV-18 | The system shall tolerate EMI per MIL-STD-461G for military environments.                                   | Guarantees operational reliability in high-EMI settings like radar, RF, and propulsion zones. |
-| USV-19 | The system shall consume no more than 2 watts average power during active operation.                        | Complies with power limitations of embedded, unmanned platforms.                              |
-| USV-20 | The AI inference latency shall not exceed 1 second per cycle.                                               | Ensures near real-time response to dynamic fault scenarios.                                   |
-| USV-21 | The system shall recover to a known safe state within 2 seconds of reboot or brownout.                      | Increases fault tolerance and fast recovery in case of transient power failures.              |
-| USV-22 | The system shall operate fully offline, with no dependency on cloud or external network communication.      | Ensures full autonomy during missions without external connectivity.                          |
-| USV-23 | The system shall support integration with USVs running embedded RTOS, Linux, or bare-metal control systems. | Enables wide adoption across diverse USV platforms with varying software environments.        |
+| **ID**                                                        | **Requirement**                                                                                             |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [USV-17](https://github.com/Dark-Bors/usv-sentinel/issues/12) | The system shall operate in environments from -10°C to +60°C without performance degradation.               |
+| [USV-18](https://github.com/Dark-Bors/usv-sentinel/issues/13) | The system shall tolerate EMI per MIL-STD-461G for military environments.                                   |
+| [USV-19](https://github.com/Dark-Bors/usv-sentinel/issues/14) | The system shall consume no more than 2 watts average power during active operation.                        |
+| [USV-20](https://github.com/Dark-Bors/usv-sentinel/issues/15) | The AI inference latency shall not exceed 1 second per cycle.                                               |
+| [USV-21](https://github.com/Dark-Bors/usv-sentinel/issues/16) | The system shall recover to a known safe state within 2 seconds of reboot or brownout.                      |
+| [USV-22](https://github.com/Dark-Bors/usv-sentinel/issues/17) | The system shall operate fully offline, with no dependency on cloud or external network communication.      |
+| [USV-23](https://github.com/Dark-Bors/usv-sentinel/issues/18) | The system shall support integration with USVs running embedded RTOS, Linux, or bare-metal control systems. |
 
 ### 5.3 Interfaces
 
-| **ID** | **Requirement**                                                                                                | **Rationale**                                                                            |
-| ------ | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| USV-24 | The system shall expose a digital status output (3-state: Normal, Warning, Mitigation) to the host controller. | Allows other onboard systems to react to Sentinel's state in real time.                  |
-| USV-25 | The system shall support UART interface for log retrieval and optional post-mission communication.             | Provides a simple and low-power standard for data access and control.                    |
-| USV-26 | The system shall support configuration through a dedicated serial protocol or config file loaded via USB.      | Enables field configuration and updates without complex UI requirements.                 |
-| USV-27 | The sensor interface shall support analog input ranges of 0–3.3V and digital (I2C/SPI) inputs.                 | Maximizes compatibility with common onboard sensors in military systems.                 |
-| USV-28 | The log export format shall support structured JSON and flat CSV outputs.                                      | Ensures flexibility in downstream data processing and compliance with varied toolchains. |
+| **ID**                                                        | **Requirement**                                                                                                |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [USV-24](https://github.com/Dark-Bors/usv-sentinel/issues/19) | The system shall expose a digital status output (3-state: Normal, Warning, Mitigation) to the host controller. |
+| [USV-25](https://github.com/Dark-Bors/usv-sentinel/issues/20) | The system shall support UART interface for log retrieval and optional post-mission communication.             |
+| [USV-26](https://github.com/Dark-Bors/usv-sentinel/issues/21) | The system shall support configuration through a dedicated serial protocol or config file loaded via USB.      |
+| [USV-27](https://github.com/Dark-Bors/usv-sentinel/issues/22) | The sensor interface shall support analog input ranges of 0–3.3V and digital (I2C/SPI) inputs.                 |
+| [USV-28](https://github.com/Dark-Bors/usv-sentinel/issues/23) | The log export format shall support structured JSON and flat CSV outputs.                                      |
 
 ### 5.4 Data Logging & Security
 
-| **ID** | **Requirement**                                                                                             | **Rationale**                                                                          |
-| ------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| USV-29 | All system actions, predictions, and state changes shall be timestamped and logged.                         | Supports traceability and forensic review of mission events.                           |
-| USV-30 | Log entries shall include: timestamp, sensor snapshot, AI output, and any mitigation action.                | Captures a complete picture of system behavior for diagnosis and training improvement. |
-| USV-31 | Logs shall be checksum-verified for integrity before export.                                                | Ensures trustworthiness and authenticity of exported data.                             |
-| USV-32 | If memory storage reaches >90% utilization, the system shall overwrite oldest logs using a circular buffer. | Maintains log continuity without manual intervention or storage overflow failures.     |
+| **ID**                                                        | **Requirement**                                                                                             |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [USV-29](https://github.com/Dark-Bors/usv-sentinel/issues/24) | All system actions, predictions, and state changes shall be timestamped and logged.                         |
+| [USV-30](https://github.com/Dark-Bors/usv-sentinel/issues/25) | Log entries shall include: timestamp, sensor snapshot, AI output, and any mitigation action.                |
+| [USV-31](https://github.com/Dark-Bors/usv-sentinel/issues/26) | Logs shall be checksum-verified for integrity before export.                                                |
+| [USV-32](https://github.com/Dark-Bors/usv-sentinel/issues/27) | If memory storage reaches >90% utilization, the system shall overwrite oldest logs using a circular buffer. |
 
 
 ## 6. Verification & Traceability
