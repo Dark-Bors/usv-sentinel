@@ -44,6 +44,10 @@
 
 The USV Sentinel system is an embedded AI-powered diagnostics and recovery module designed for Unmanned Surface Vessels (USVs). It continuously monitors onboard electronics for signs of degradation or failure, autonomously applies mitigation actions, and supports post-mission fault analysis.
 
+<!-- ![Blank document (1)](https://github.com/user-attachments/assets/1c18872c-e075-46b1-a364-ea785a44c413) -->
+<img src="https://github.com/user-attachments/assets/1c18872c-e075-46b1-a364-ea785a44c413" width="500" height="574"/>
+
+
 ---
 
 ## 4. Glossary
