@@ -1,8 +1,11 @@
 # Product Requirements Document (PRD)
 
 **Project Title:** USV Sentinel – AI-Powered Self-Healing Diagnostic System
+
 **Prepared by:** Boris Eldarov
+
 **Version:** 1.0
+
 **Date:** June 2025
 
 ---
