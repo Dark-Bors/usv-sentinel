@@ -1,10 +1,12 @@
 # USV Sentinel – System Requirements Document (SRD)
 
+**Project Title:** USV Sentinel - AI-Powered Self-Healing diagnostic System
+
 **Version:** 1.0
 
 **Date:** June 2025
 
-**Prepared by:** Chief Systems Engineer
+**Prepared by:** Boris Eldarov
 
 ---
 
