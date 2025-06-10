@@ -71,35 +71,107 @@ USV Sentinel is a smart embedded module combining real-time sensor data collecti
 
 ## 5. High-Level Use Cases
 
-### Use Case 1: Normal Operation
+### 5.1 Use Case: Normal Autonomous Operation
 
-* **Precondition:** USV is on mission and systems are stable.
-* **Use Case:** Sentinel monitors onboard conditions and logs system health.
-* **Result:** No user intervention required; full log generated for later review.
+**Objective:**  
+Ensure stable mission performance with passive monitoring.
 
-### Use Case 2: Gradual Thermal Degradation
+**Preconditions:**  
+- All subsystems (navigation, propulsion, communication, sensors) are functional.  
+- Environmental conditions are within acceptable limits.
 
-* **Precondition:** Temperature on a subsystem rises unusually over time.
-* **Use Case:** Sentinel identifies the abnormal trend and flags it as a potential failure.
-* **Result:** The affected system is scaled down or disabled to avoid damage. Operator notified after mission.
+**System Behavior:**  
+- The onboard Jetson-based Sentinel system collects real-time telemetry and health data.  
+- Metrics include voltage, current, temperatures, CPU usage, and network signal quality.  
+- Data is logged locally with optional MQTT live telemetry to the cloud dashboard.
 
-### Use Case 3: Sudden EMI Interference
+**Result:**  
+- Mission runs uninterrupted without human intervention.  
+- Full system log is generated for post-mission review.  
+- Live monitoring is optionally available via remote dashboard.
 
-* **Precondition:** The vessel enters a high-EMI environment.
-* **Use Case:** Sentinel detects RF noise signature associated with jamming or interference.
-* **Result:** RF subsystems are disabled or rerouted; incident logged for tactical review.
+---
 
-### Use Case 4: Internal Power Instability
+### 5.2 Use Case: Gradual Thermal Degradation
 
-* **Precondition:** Propulsion or payload causes sudden current surges.
-* **Use Case:** Sentinel detects and responds to power anomalies.
-* **Result:** Sentinel temporarily reduces load or disables non-essential systems to stabilize power delivery.
+**Objective:**  
+Detect and mitigate slow overheating trends before damage occurs.
 
-### Use Case 5: Post-Mission Analysis
+**Preconditions:**  
+- A subsystem (e.g., Jetson module, motor driver) exhibits a long-term rise in temperature beyond expected operational norms.
 
-* **Precondition:** Mission has ended.
-* **Use Case:** Sentinel compiles health and fault logs.
-* **Result:** Logs are exported to base for review, and optionally used to improve AI prediction models.
+**System Behavior:**  
+- Sentinel uses historical trend analysis and thermal modeling to flag abnormal patterns.  
+- Predictive thresholds trigger a warning before hardware alarms activate.  
+- Subsystem load is reduced (e.g., lower processing speed or reduced motor power).  
+- Event is logged as a proactive thermal mitigation.
+
+**Result:**  
+- Hardware damage is prevented.  
+- USV continues mission with degraded performance if needed.  
+- Operator is informed post-mission with suggested action or service check.
+
+---
+
+### 5.3 Use Case: Sudden Electromagnetic Interference (EMI)
+
+**Objective:**  
+Adapt communication subsystems in response to hostile or environmental RF conditions.
+
+**Preconditions:**  
+- The USV enters a region with unexpected high RF noise, jamming, or industrial EMI.
+
+**System Behavior:**  
+- Sentinel detects packet loss, signal degradation, or spectrum anomalies.  
+- EMI patterns are classified using known interference signatures.  
+- Affected communication links (e.g., Wi-Fi, LTE) are disabled or rerouted (e.g., SATCOM fallback).  
+- Detailed RF log and spectrum snapshots are saved.
+
+**Result:**  
+- Communication continuity is maintained through alternative links.  
+- Unnecessary retries or power consumption are avoided.  
+- EMI event is logged and classified for tactical review.
+
+---
+
+### 5.4 Use Case: Internal Power Instability
+
+**Objective:**  
+Protect core systems from power anomalies due to surges or brownouts.
+
+**Preconditions:**  
+- High-load modules (e.g., thrusters, lidar) cause sudden current surges or voltage drops.
+
+**System Behavior:**  
+- Power Management System monitors battery voltage, current spikes, and thermal activity.  
+- Sentinel correlates anomalies with system events and recent commands.  
+- Load balancing or subsystem shutdown is initiated (e.g., reduce propulsion or disable camera).  
+- Health monitoring continues and recovery logic re-enables modules when safe.
+
+**Result:**  
+- System stability is preserved.  
+- Mission may continue in reduced capacity.  
+- Event details are logged with timestamp and affected components.
+
+---
+
+### 5.5 Use Case: Post-Mission Analysis and Learning
+
+**Objective:**  
+Enable fault diagnosis, mission debrief, and predictive model training.
+
+**Preconditions:**  
+- Mission is completed or system is idle in base station mode.
+
+**System Behavior:**  
+- All logs (sensor data, event history, power trends, fault records) are compiled.  
+- Data is exported via MQTT or physical retrieval (e.g., USB).  
+- Optional: Logs are used to retrain AI models for predictive maintenance and fault detection.
+
+**Result:**  
+- Operators receive actionable mission summaries.  
+- System improvements are identified and implemented.  
+- Predictive capabilities are continuously refined for future missions.
 
 ---
 
