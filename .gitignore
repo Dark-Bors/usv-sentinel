@@ -1,0 +1,9 @@
+# Ignore the temp folder and its contents
+temp/
+Pictures/
+
+# Ignore specific files
+image.png
+
+# Ignore all .log files
+*.log
